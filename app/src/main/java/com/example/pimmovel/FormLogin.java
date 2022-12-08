@@ -9,13 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.pimmovel.dao.UsuarioDAO;
+import com.example.pimmovel.model.Usuario;
 import com.google.android.material.snackbar.Snackbar;
 
 public class FormLogin extends AppCompatActivity {
 
     private Button button_tela_dadospessoais;
     private EditText edit_email,edit_senha;
-    String[] mensagens = {"Prencha todos os campos"};
+    String[] mensagens = {"Login Inválido!"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +32,22 @@ public class FormLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String email = edit_email.getText().toString();
-                String senha = edit_senha.getText().toString();
+                String Email = edit_email.getText().toString();
+                String Senha = edit_senha.getText().toString();
 
-                if (email.isEmpty() || senha.isEmpty()) {
+                Usuario usu = new UsuarioDAO().selecionaUsuario(Email, Senha);
+                if (usu != null){
+                    Intent intent = new Intent(FormLogin.this,FormDadosPessoais.class);
+                    startActivity(intent);
+                }else{
                     Snackbar snackbar = Snackbar.make(view, mensagens[0], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
-                }else{
 
-                    Intent intent = new Intent(FormLogin.this,FormDadosPessoais.class);
-                    startActivity(intent);
+
+
+
 
                 }
 
