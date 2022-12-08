@@ -1,5 +1,7 @@
 package com.example.pimmovel.dao;
 
+import android.util.Log;
+
 import com.example.pimmovel.conexao.Conexao;
 import com.example.pimmovel.model.Usuario;
 
@@ -22,8 +24,8 @@ public class UsuarioDAO {
                 ResultSet rs = st.executeQuery(sql);
                 while(rs.next()){
                     Usuario usu = new Usuario();
-                    usu.setCodigo(rs.getInt(1));
-                    usu.setUsuario(rs.getString(2));
+                    usu.setId(rs.getInt(1));
+                    usu.setEmail(rs.getString(2));
                     usu.setSenha(rs.getString(3));
 
                     conn.close();
@@ -35,8 +37,11 @@ public class UsuarioDAO {
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            Log.e("ERRO", e.getMessage());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            Log.e("ERRO", throwables.getMessage());
+
         }
 
         return null;

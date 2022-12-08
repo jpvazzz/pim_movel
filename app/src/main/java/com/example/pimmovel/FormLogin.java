@@ -17,7 +17,7 @@ public class FormLogin extends AppCompatActivity {
 
     private Button button_tela_dadospessoais;
     private EditText edit_email,edit_senha;
-    String[] mensagens = {"Login Inválido!"};
+    String[] mensagens = {"Prencha todos os campos"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,20 +32,17 @@ public class FormLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                String Email = edit_email.getText().toString();
-                String Senha = edit_senha.getText().toString();
+                String email = edit_email.getText().toString();
+                String senha = edit_senha.getText().toString();
 
-                Usuario usu = new UsuarioDAO().selecionaUsuario(Email, Senha);
-                if (usu != null){
-                    Intent intent = new Intent(FormLogin.this,FormDadosPessoais.class);
-                    startActivity(intent);
-                }else{
+                if (email.isEmpty() || senha.isEmpty()) {
                     Snackbar snackbar = Snackbar.make(view, mensagens[0], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
                     snackbar.show();
+                }else{
 
-
+                    AutenticarUsuario();
 
 
 
@@ -55,6 +52,19 @@ public class FormLogin extends AppCompatActivity {
 
             }
         });
+
+
+
+    }
+
+    private void AutenticarUsuario(){
+        String email = edit_email.getText().toString();
+        String senha = edit_senha.getText().toString();
+
+        Usuario usu = new UsuarioDAO().selecionaUsuario(email, senha);
+        if(usu != null);
+        Intent intent = new Intent(FormLogin.this,FormDadosPessoais.class);
+        startActivity(intent);
 
     }
 
