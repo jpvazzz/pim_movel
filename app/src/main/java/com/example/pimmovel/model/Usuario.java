@@ -2,31 +2,31 @@ package com.example.pimmovel.model;
 
 public class Usuario {
 
-    private Integer codigo;
-    private String usuario;
-    private String senha;
+    private Integer Id;
+    private String Email;
+    private String Senha;
 
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setCodigo(Integer codigo) {
-        this.codigo = codigo;
+    public void setId(Integer id) {
+        Id = id;
     }
 
-    public String getUsuario() {
-        return usuario;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
+    public void setEmail(String email) {
+        Email = email;
     }
 
     public String getSenha() {
-        return senha;
+        return Senha;
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+        Senha = senha;
     }
 }

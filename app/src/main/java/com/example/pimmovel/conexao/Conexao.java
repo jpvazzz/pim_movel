@@ -22,7 +22,7 @@ public class Conexao {
         String user = "seguradora";
         String senha = "Senha@123";
 
-        String connString = "jdbc.jtds:sqlserver://"+ip+";databaseName="+db+";user="+user+";password="+senha+";";
+        String connString = "jdbc:jtds:sqlserver://"+ip+";databaseName="+db+";user="+user+";password="+senha+";";
 
         conn = DriverManager.getConnection(connString);
 
